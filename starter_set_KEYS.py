@@ -2,11 +2,6 @@ from Tkinter import *
 from hummingbird import Hummingbird
 import time
 
-root = Tk()
-
-#Creates Hummingbird object 
-humm = Hummingbird()
-
 
 '''
 Hummingbird Hardware Components
@@ -152,13 +147,52 @@ def key(event):
         
     instructions()
 
+################################################################
+#   Don't modify the following code, GUI components            #
+################################################################
+
+root = Tk()
+
+text = Text(root)
+text.insert(INSERT, """
+
+    Welcome to my hummingbird:
+
+    Use the following keys to activate hummingbird components
+
+    a.  Turn on LED light
+    s.  Start on a motor
+    d.  Stop the motor
+    f.  Print distances
+    g.  Print temperature
+    h.  Use rotary sensor
+    j.  Sound Sensor
+    k.  Vibration Motor
+    l.  Set Servo
+    space: Turn Off
+
+    """)
+text.insert(END, "Click the button below to start.....")
+text.pack()
+
+def button_handler():
+    print "Here we go!"
+    frame.focus_set()
+
+start_button = Button(root, text="Click me to Start", command=button_handler, bg="yellow")
+start_button.config( height = 10, width = 50 )
+start_button.pack()
+
+#Creates Hummingbird object 
+humm = Hummingbird()
+
 def callback(event):
     frame.focus_set()
     print "clicked at", event.x, event.y
 
 
 
-frame = Frame(root, width=100, height=100)
+frame = Frame(root, width=300, height=150)
 frame.bind("<Key>", key)
 frame.bind("<Button-1>", callback)
 frame.pack()

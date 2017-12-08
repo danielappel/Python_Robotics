@@ -23,7 +23,7 @@ Connect Sound Sensor to sensor port #4
 
 '''
 
-#The following functions are tied to key presses
+#The following functions are tied to numeric entries
 
 def instructions():
 
@@ -49,18 +49,25 @@ def tri_color():
     #Set LED in port 1 to red
     humm.set_tricolor_led(1, 255, 0, 0)
     time.sleep(1)
-    humm.set_tricolor_led(1, 0, 255, 0)
+    #Set LED in port 1 to green
     time.sleep(1)
-    humm.set_tricolor_led(1, 0, 0, 255)
+    #Set LED in port 1 to blue
 
 def start_motor():
-    humm.set_motor(1, 255)
+    #Set motor in port 1 to max speed
+    humm.set_motor(1, 1)
+    time.sleep(1)
+    #set motor in port 1 to low speed
+    
+    #set motor in port 1 to max reverse speed
+    
 
 def stop_motor():
+    #Stop the motor on port #1
     humm.set_motor(1, 0)
     
 def distance_sensor():
-     #Loop until object <20cm away detected
+     #Print the distances from the distance sensor for 5 seconds
      distance = humm.get_distance(2)
      print "I will print the distance for the next 5 seconds"
      start = time.time()
@@ -71,42 +78,39 @@ def distance_sensor():
         print "Distance: ", humm.get_distance(2)
         start = time.time()
 
+     #Create a while loop that will print the distance until the distance is below 10cm
+     
+
 def temp_sensor():
     temp = humm.get_temperature(1)
-    print "The temperature is", temp
+
+    #print the temperature for the next 5 seconds
 
 
 def rotary_values():
     rotary = humm.get_knob_value(3)
 
-    while(rotary !=0):
-        print "Rotary value:", rotary
-        rotary = humm.get_knob_value(3)
+    #Create a loop that will print the rotary values until a rotary value of 0 is met
+    
 
 def get_sound():
-    print "I will record the sound levels for the next 5 seconds"
-    start = time.time()
-
-    stop = start + 5
+    #Create a loop that prints the sound levels for the next 5 seconds
+    pass
     
-    while(start < stop):
-        print "Sound level: ", humm.get_sound_sensor(4)
-        start = time.time()
-
 def vibrate():
-    #Vibrate 5 times
-    for i in range(0,5):
-        humm.set_vibration_motor(1, 255)
-        time.sleep(1)
-        humm.set_vibration_motor(1, 0)
-        time.sleep(1)
+    #Make the vibration motor vibrate for 1 second, repeat this 5 times
+
+    humm.set_vibration_motor(1, 255)
+    
 
 def set_servo():
-    for i in range(0,3):
-        humm.set_servo(1, 0)
-        time.sleep(1)
-        humm.set_servo(1, 90)
-        time.sleep(1)
+    #Set the servo to 0, wait 1 second and set it to 90.  Do this three times
+    humm.set_servo(1, 0)
+
+
+    #Set the position of the servo motor to the rotary sensor value (think about how you will exit this loop)
+    
+        
 
 def get_user_choice():
     
